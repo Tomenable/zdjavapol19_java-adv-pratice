@@ -3,6 +3,7 @@ package pl.sda.zdjavapol19;
 import pl.sda.zdjavapol19.oop.Line;
 import pl.sda.zdjavapol19.oop.Point;
 import pl.sda.zdjavapol19.oop.Rectangle;
+import pl.sda.zdjavapol19.oop.Triangle;
 
 public class Runner {
     public static void main(String[] args) {
@@ -24,5 +25,9 @@ public class Runner {
         Rectangle r1 = new Rectangle(5, 7, "red");
         System.out.println(r1);
         System.out.println("Powierzchnia r1 = " + r1.calcArea());
+
+        Triangle t1 = new Triangle(15, 3, "yellow");
+        System.out.println(t1);
+        System.out.println("Powierzchnia t1 = " + t1.calcArea());
     }
 }
