@@ -1,5 +1,7 @@
 package pl.sda.zdjavapol19.oop;
 
+import java.util.Objects;
+
 public class Point2D {
     protected int x, y;   //=0
 
@@ -54,5 +56,20 @@ public class Point2D {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    //generated
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point2D point2D = (Point2D) o;
+        return x == point2D.x &&
+                y == point2D.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }
