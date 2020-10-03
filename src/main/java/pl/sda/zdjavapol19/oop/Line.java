@@ -1,6 +1,6 @@
 package pl.sda.zdjavapol19.oop;
 
-public class Line {
+public class Line { //extends java.lang.Object - stad metoda toString()
 
     private Point begin, end;
 
