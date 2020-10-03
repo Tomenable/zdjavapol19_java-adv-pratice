@@ -1,9 +1,6 @@
 package pl.sda.zdjavapol19;
 
-import pl.sda.zdjavapol19.oop.Line;
-import pl.sda.zdjavapol19.oop.Point;
-import pl.sda.zdjavapol19.oop.Rectangle;
-import pl.sda.zdjavapol19.oop.Triangle;
+import pl.sda.zdjavapol19.oop.*;
 
 public class Runner {
     public static void main(String[] args) {
@@ -29,5 +26,21 @@ public class Runner {
         Triangle t1 = new Triangle(15, 3, "yellow");
         System.out.println(t1);
         System.out.println("Powierzchnia t1 = " + t1.calcArea());
+
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+        Account a1 = new Account("1", "pw", 5000);
+        Account a2 = new Account("2", "ew", 2500);
+        System.out.println(a1);
+        System.out.println(a2);
+        System.out.println("Credit 500 to a2");
+        a2.credit(500);
+        System.out.println(a2);
+        System.out.println("Debit 4000 from a1");
+        a1.debit(4000);
+        System.out.println(a1);
+        System.out.println("Transfer 2000 from a2 to a1");
+        a2.transferTo(a1, 2000);
+        System.out.println(a2);
+        System.out.println(a1);
     }
 }
