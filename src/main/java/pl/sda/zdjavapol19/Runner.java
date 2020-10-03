@@ -4,8 +4,8 @@ import pl.sda.zdjavapol19.oop.*;
 
 public class Runner {
     public static void main(String[] args) {
-        Point pt1 = new Point();
-        Point pt2 = new Point(7, 7);
+        Point2D pt1 = new Point2D();
+        Point2D pt2 = new Point2D(7, 7);
 
         System.out.printf("Odleglosc pomiedzy %s a %s wynosi %f\n", pt1, pt2, pt1.distance(pt2));
         System.out.printf("Odleglosc pomiedzy %s a %s wynosi %f\n", pt2, pt1, pt2.distance(pt1));
@@ -42,5 +42,26 @@ public class Runner {
         a2.transferTo(a1, 2000);
         System.out.println(a2);
         System.out.println(a1);
+
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+        Point2D pt2d1 = new Point2D();
+        Point3D pt3d1 = new Point3D(pt2d1, 5);
+        Point2D pt2d2 = new Point2D(7, 7);
+        Point3D pt3d2 = new Point3D(pt2d2, 10);
+        //validating 'on plane' calculations which were imported from point2d
+        System.out.printf("Odleglosc pomiedzy %s a %s wynosi %f\n", pt3d1, pt3d2, pt3d1.distanceOnPlane(pt3d2));
+        System.out.printf("Odleglosc pomiedzy %s a %s wynosi %f\n", pt3d2, pt3d1, pt3d2.distanceOnPlane(pt3d1));
+        System.out.printf("Odleglosc pomiedzy %s a (0, 0) wynosi %f\n", pt3d2, pt3d2.distanceOnPlane(0,0));
+        System.out.printf("Odleglosc pomiedzy %s a poczatkiem ukladu wspolrzednych wynosi %f\n", pt3d2, pt3d2.distanceOnPlane());
+        System.out.printf("Odleglosc pomiedzy %s a poczatkiem ukladu wspolrzednych wynosi %f\n", pt3d1, pt3d1.distanceOnPlane());
+        //some exceptions
+        System.out.printf("Odleglosc pomiedzy %s a (0, 0) wynosi %f\n", pt3d2, pt3d2.distance(0,0));
+        System.out.printf("Odleglosc pomiedzy %s a (0, 0) wynosi %f\n", pt3d2, pt3d2.distance(pt2d1));
+        //3d calculations
+        System.out.printf("Odleglosc pomiedzy %s a %s wynosi %f\n", pt3d1, pt3d2, pt3d1.distance(pt3d2));
+        System.out.printf("Odleglosc pomiedzy %s a %s wynosi %f\n", pt3d2, pt3d1, pt3d2.distance(pt3d1));
+        System.out.printf("Odleglosc pomiedzy %s a (0, 0) wynosi %f\n", pt3d2, pt3d2.distance(0,0));
+        System.out.printf("Odleglosc pomiedzy %s a poczatkiem ukladu wspolrzednych wynosi %f\n", pt3d2, pt3d2.distance());
+        System.out.printf("Odleglosc pomiedzy %s a poczatkiem ukladu wspolrzednych wynosi %f\n", pt3d1, pt3d1.distance());
     }
 }

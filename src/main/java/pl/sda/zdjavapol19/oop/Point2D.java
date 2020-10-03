@@ -1,12 +1,12 @@
 package pl.sda.zdjavapol19.oop;
 
-public class Point {
-    private int x, y;   //=0
+public class Point2D {
+    protected int x, y;   //=0
 
-    public Point() {}
+    public Point2D() {}
 
     //alt+insert -> generate -> constructor
-    public Point(int x, int y) {
+    public Point2D(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -20,7 +20,7 @@ public class Point {
         return distance(0, 0);
     }
 
-    public double distance(Point pt) {
+    public double distance(Point2D pt) {
         return distance(pt.x, pt.y);
     }
 

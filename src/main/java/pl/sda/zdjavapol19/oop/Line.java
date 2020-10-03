@@ -2,14 +2,14 @@ package pl.sda.zdjavapol19.oop;
 
 public class Line { //extends java.lang.Object - stad metoda toString()
 
-    private Point begin, end;
+    private Point2D begin, end;
 
     public Line(int x1, int y1, int x2, int y2) {
-        this.begin = new Point(x1, y1);
-        this.end = new Point(x2, y1);
+        this.begin = new Point2D(x1, y1);
+        this.end = new Point2D(x2, y1);
     }
 
-    public Line(Point begin, Point end) {
+    public Line(Point2D begin, Point2D end) {
         this.begin = begin;
         this.end = end;
     }
@@ -48,19 +48,19 @@ public class Line { //extends java.lang.Object - stad metoda toString()
         begin.setXY(x, y);
     }
 
-    public Point getBegin() {
+    public Point2D getBegin() {
         return begin;
     }
 
-    public void setBegin(Point begin) {
+    public void setBegin(Point2D begin) {
         this.begin = begin;
     }
 
-    public Point getEnd() {
+    public Point2D getEnd() {
         return end;
     }
 
-    public void setEnd(Point end) {
+    public void setEnd(Point2D end) {
         this.end = end;
     }
 }
