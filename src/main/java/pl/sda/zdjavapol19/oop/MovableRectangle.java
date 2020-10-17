@@ -23,10 +23,15 @@ public class MovableRectangle implements Movable {
     //TO-DO: korzystac z 'deep copy' argumentow Point2D - implementacja metody Object#copy
     public MovableRectangle(Point2D a, Point2D b, Point2D c, Point2D d) {
         if(isValid(a, b, c, d)) {
-            points[0] = a;
-            points[1] = b;
-            points[2] = c;
-            points[3] = d;
+            try {
+                points[0] = (Point2D) a.clone();
+                points[1] = (Point2D) b.clone();
+                points[2] = (Point2D) c.clone();
+                points[3] = (Point2D) d.clone();
+            }
+            catch(CloneNotSupportedException ex) {
+                System.out.println(ex);
+            }
         }
         else {
             throw new RectangleConstructionException();
@@ -63,7 +68,7 @@ public class MovableRectangle implements Movable {
                 .forEach(pt -> pt.x -= rectXSpeed);
     }
 
-    private boolean isValid(Point2D a, Point2D b, Point2D c, Point2D d) {
+    boolean isValid(Point2D a, Point2D b, Point2D c, Point2D d) {
         return areOppositeSidesEqual(a, b, c, d) && fulfillsPitagorasRule(a, b, c, d);
     }
 

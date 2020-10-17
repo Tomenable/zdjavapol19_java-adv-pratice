@@ -2,7 +2,7 @@ package pl.sda.zdjavapol19.oop;
 
 import java.util.Objects;
 
-public class Point2D {
+public class Point2D implements Cloneable {
     protected int x, y;   //=0
 
     public Point2D() {}
@@ -40,6 +40,11 @@ public class Point2D {
     public void setXY(int x, int y) {   //ta metoda jedynie przekierowuje zadnie do metody modyfikujacej
         setX(x);
         setY(y);
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public int getX() {

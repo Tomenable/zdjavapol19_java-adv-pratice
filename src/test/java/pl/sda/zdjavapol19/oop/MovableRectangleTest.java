@@ -66,4 +66,27 @@ public class MovableRectangleTest {
         assertThat(mr.points[3].x).isEqualTo(5);
     }
 
+    @Test
+    public void cannot_manipulate_rect_points_positions() {
+        //given
+        Point2D a = new Point2D(0, 0);
+        Point2D b = new Point2D(3, 0);
+        Point2D c = new Point2D(3, -3);
+        Point2D d = new Point2D(0, -3);
+
+        MovableRectangle mr = new MovableRectangle(a, b, c, d, 5, 10);
+
+        assertThat(mr.points[0]).isEqualTo(a);
+        assertThat(mr.points[1]).isEqualTo(b);
+        assertThat(mr.points[2]).isEqualTo(c);
+        assertThat(mr.points[3]).isEqualTo(d);
+
+        //when
+        a.setXY(5, 5);  //zakladamy, ze to nie powinno zmodyfikowac wsp pkt tworzacego prostokat
+
+        //then
+        assertThat(mr.isValid(mr.points[0], mr.points[1], mr.points[2], mr.points[3]))
+            .isTrue();
+    }
+
 }
