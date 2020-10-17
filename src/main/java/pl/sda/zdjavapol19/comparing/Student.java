@@ -36,6 +36,11 @@ public class Student implements Comparable<Student> {
                 "lastName='" + lastName + '\'' +
                 ", year=" + year +
                 ", avgMark=" + avgMark +
+                ", fun=" + fun(this) +
                 '}';
+    }
+
+    private double fun(Student s) {
+        return s.getLastName().length() + s.getYear() * s.getAvgMark();
     }
 }

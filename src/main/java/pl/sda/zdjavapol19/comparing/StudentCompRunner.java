@@ -23,6 +23,10 @@ public class StudentCompRunner {
         System.out.println("Studenci posortowani po ocenach, malejaco: ");
         Arrays.sort(students, new StudentByAvgMarkDescComparator());
         System.out.println(Arrays.toString(students));
+
+        System.out.println("Studenci posortowani po wzorze: ");
+        Arrays.sort(students, new StudentByFunction());
+        System.out.println(Arrays.toString(students));
     }
 
     public static class StudentByAvgMarkDescComparator implements Comparator<Student> {
@@ -34,5 +38,15 @@ public class StudentCompRunner {
         }
     }
 
+    public static class StudentByFunction implements Comparator<Student> {
+        @Override
+        public int compare(Student o1, Student o2) {
+            return Double.compare(fun(o1), fun(o2));
+        }
+
+        private double fun(Student s) {
+            return s.getLastName().length() + s.getYear() * s.getAvgMark();
+        }
+    }
 
 }
