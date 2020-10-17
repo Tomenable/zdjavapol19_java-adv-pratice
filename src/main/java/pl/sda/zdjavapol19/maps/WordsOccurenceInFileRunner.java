@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
 1. Utworzyc plik .txt - umiescic go w folderze 'resources'
@@ -25,6 +27,7 @@ public class WordsOccurenceInFileRunner {
 
     public static void main(String[] args) {
         InputStream is = WordsOccurenceInFileRunner.class.getClassLoader().getResourceAsStream("news.txt");
+        Map<String, Integer> wordsOccurenceMap = new HashMap<>();
 
         try (InputStreamReader streamReader =
                      new InputStreamReader(is, StandardCharsets.UTF_8);
@@ -32,13 +35,28 @@ public class WordsOccurenceInFileRunner {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                //todo
+                line = removeInterpunctionChars(line);
+                for(String word : line.split(" ")) {
+                    if(wordsOccurenceMap.containsKey(word)) {
+                        wordsOccurenceMap.put(word, wordsOccurenceMap.get(word) + 1);
+                    }
+                    else {
+                        wordsOccurenceMap.put(word, 1);
+                    }
+                }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        System.out.println(wordsOccurenceMap);
+    }
+
+    private static String removeInterpunctionChars(String input) {
+        input = input.replace(",", "");
+        input = input.replace(".", "");
+        input = input.replace("\"", "");
+        return input.toLowerCase();
     }
 
 }
