@@ -11,6 +11,7 @@ public class PasswordValidatorRunner {
         validators.add(new LengthValidator(8));
         validators.add(new ContainsDigitsValidator());
         validators.add(new ContainsLargeLettersValidator());
+        validators.add(new SpecialCharsValidator());
 
         System.out.println("Podaj haslo, pamietajac o nastepujacych warunkach: ");
         //wypisac warunki - dostarczne przez validator

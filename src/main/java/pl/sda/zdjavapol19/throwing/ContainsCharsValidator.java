@@ -8,7 +8,7 @@ public abstract class ContainsCharsValidator extends Validator {
 
     protected final List<Integer> expectedChars;    //kod liczbowy znaku
 
-    public ContainsCharsValidator(char[] expectedChars) {   //! @ # $ % ^ & * ...
+        public ContainsCharsValidator(char[] expectedChars) {   //! @ # $ % ^ & * ...
         super("Hasło musi zawierać jeden ze znaków: " + Arrays.toString(expectedChars));
         this.expectedChars = new String(expectedChars)
                 .chars()
@@ -23,6 +23,23 @@ public abstract class ContainsCharsValidator extends Validator {
         else
             throw new ContainsCharsValidationException(expectedChars);
 
+    }
+
+    //inclusive - ostatni podany znak wchodzi w sklad zwroconej tablicy
+    protected static char[] unicodesToCharsRange(int uBegin, int uEndInclusive) {
+        char[] chars = new char[uEndInclusive - uBegin + 1];
+        for(int i = uBegin; i <= uEndInclusive; i++)
+            chars[i-uBegin] = (char) i;
+
+        return chars;
+    }
+
+    protected static char[] unicodesToChars(int[] unicodes) {
+        char[] chars = new char[unicodes.length];
+        for(int i = 0; i < unicodes.length; i++)
+            chars[i] = (char) unicodes[i];
+
+        return chars;
     }
 
     public class ContainsCharsValidationException extends ValidationException {
