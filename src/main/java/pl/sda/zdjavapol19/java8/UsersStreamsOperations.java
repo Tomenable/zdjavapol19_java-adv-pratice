@@ -105,7 +105,12 @@ public class UsersStreamsOperations {
                 .sorted(Comparator.comparing(User::getSalary).reversed())   //natural order dla liczb to jest rosnaco
                 .findFirst()
                 .get();
-        System.out.println("Oto osoba o najwyzszych zarobkach: " + user);
+        //druga mozliwosc
+        User user2 = users.stream()
+                .max(Comparator.comparing(User::getSalary))   //natural order dla liczb to jest rosnaco
+                .get();
+
+        System.out.println("Oto osoba o najwyzszych zarobkach: " + user2);
 
         //wypisac posortowaną listę osób wg wieku rosnąco. -> Comparable<User> lub Comparator
         System.out.println("Lista osob posortowana wg wieku rosnaco: ");
