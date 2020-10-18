@@ -9,4 +9,8 @@ public interface MoviesRepository {
     List<Movie> findAll();
     Movie findByTitle(String title);
 
+    void add(Movie m);
+
+    void persistCatalogue();
+
 }

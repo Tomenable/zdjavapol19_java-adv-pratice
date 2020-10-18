@@ -71,4 +71,14 @@ public class InMemoryMoviesRepository implements MoviesRepository {
             throw new MovieNotFoundEx(title);
         }
     }
+
+    @Override
+    public void persistCatalogue() {
+        System.out.println("InMemory repo could not be persisted");
+    }
+
+    @Override
+    public void add(Movie m) {
+        System.err.println("Not implemented!");
+    }
 }

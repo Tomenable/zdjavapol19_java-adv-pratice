@@ -2,19 +2,20 @@ package pl.sda.netlix.ui.console;
 
 import de.vandermeer.asciitable.AsciiTable;
 import pl.sda.netlix.model.Movie;
-import pl.sda.netlix.repository.InMemoryMoviesRepository;
+import pl.sda.netlix.repository.FileMoviesRepository;
 import pl.sda.netlix.repository.MoviesRepository;
 
 import java.time.format.DateTimeFormatter;
 
-public enum ConsoleCatalogueViewer {
+public enum ConsoleUI {
 
-    INSTANCE(new InMemoryMoviesRepository());
+    //INSTANCE(new InMemoryMoviesRepository());
+    INSTANCE(new FileMoviesRepository("movie_catalogue.txt"));
 
     private final MoviesRepository moviesRepo;
     private final DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-    ConsoleCatalogueViewer(MoviesRepository moviesRepo) {
+    ConsoleUI(MoviesRepository moviesRepo) {
         this.moviesRepo = moviesRepo;
     }
 
@@ -28,6 +29,14 @@ public enum ConsoleCatalogueViewer {
         }
         at.addRule();
         System.out.println(at.render());
+    }
+
+    public void persistCatalogueOnExit() {
+        moviesRepo.persistCatalogue();
+    }
+
+    public void addMovie(Movie m) {
+        moviesRepo.add(m);
     }
 
 }

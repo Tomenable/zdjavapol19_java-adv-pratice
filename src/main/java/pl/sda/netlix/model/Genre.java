@@ -8,6 +8,7 @@ public enum Genre {
     HISTORICAL,
     DOCUMENTARY,
     DRAMA,
+    FANTASY,
     HORROR,
     THRILLER,
     ROMANCE,
