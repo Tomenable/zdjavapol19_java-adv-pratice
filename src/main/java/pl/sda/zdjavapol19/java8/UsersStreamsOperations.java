@@ -1,7 +1,9 @@
 package pl.sda.zdjavapol19.java8;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class UsersStreamsOperations {
@@ -73,8 +75,16 @@ public class UsersStreamsOperations {
 
         //START HERE!
         //wypisac osoby zarabiające powyżej 5000 PLN -> sout
+        System.out.println("Osoby zarabiajace powyzej 5000 PLN: ");
+        users.stream()
+                .filter(u -> u.getSalary() > 5000)
+                .forEach(System.out::println);
 
         //zwrocic liczba osób w związku, -> count
+        long count = users.stream()
+                .filter(u -> u.getCs().equals(CivicState.OCCUPIED))
+                .count();
+        System.out.println("Liczba osob w zwiazku: " + count);
 
         //wypisac osoby z dziećmi w stanie wolnym,
         System.out.println("Oto osoby z dziećmi, ale w stanie wolnym: ");
@@ -84,10 +94,24 @@ public class UsersStreamsOperations {
                 .forEach(System.out::println);
 
         //zwrocic liczbę dzieci osób w wieku powyżej 30 lat,
+        int sum = users.stream()
+                .filter(u -> ChronoUnit.YEARS.between(u.getBrithday(), LocalDate.now()) > 30)
+                .mapToInt(User::getChildren)
+                .sum();
+        System.out.println("Liczba dzieci osob w wieku powyzej 30 lat: " + sum);
 
         //wypisac dane osoby mającej największą pensję, -> posortowac i wybrac max element
+        User user = users.stream()
+                .sorted(Comparator.comparing(User::getSalary).reversed())   //natural order dla liczb to jest rosnaco
+                .findFirst()
+                .get();
+        System.out.println("Oto osoba o najwyzszych zarobkach: " + user);
 
         //wypisac posortowaną listę osób wg wieku rosnąco. -> Comparable<User> lub Comparator
+        System.out.println("Lista osob posortowana wg wieku rosnaco: ");
+        users.stream()
+                .sorted(Comparator.comparing(User::getBrithday).reversed())
+                .forEach(System.out::println);
     }
 
 }
